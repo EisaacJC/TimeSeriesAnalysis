@@ -6,32 +6,28 @@ Este framework tiene como objetivo hallar comparaciones dentro de métricas del 
 
 * **Métodos para la estimación de la volatilidad:**
   - **Ventanas móviles:** Es un proceso en el cual se estima la volatilidad del mercado financiero por ventanas de tiempo. Finalmente, se observa un proceso que se comporta según lo siguiente:
-    $$
-    \sigma=\sqrt{\frac{\sum (x_i -\mu)^2}{n-1}} \times \sqrt{252}
-    $$
+    $\sigma=\sqrt{\frac{\sum (x_i -\mu)^2}{n-1}} \times \sqrt{252}$
+  
   - **Parkinson:** Es un método que asume que la distribución de los precios de las acciones sigue un comportamiento geométrico browniano. La fórmula es:
-    $$
-    \sigma = \frac{1}{4 \ln(2)} \cdot \frac{1}{n} \sum_{i=1}^{n} \left( \ln\left(\frac{H_i}{L_i}\right) \right)^2 \times \sqrt{252}
-    $$
-    donde \( H_i \) y \( L_i \) son el precio máximo y mínimo en el periodo \( i \), respectivamente.
+    $\sigma = \frac{1}{4 \ln(2)} \cdot \frac{1}{n} \sum_{i=1}^{n} \left( \ln\left(\frac{H_i}{L_i}\right) \right)^2 \times \sqrt{252}$
+  
+    donde $H_i$ y $L_i$ son el precio máximo y mínimo en el periodo $i$, respectivamente.
 
   - **Yang-Zhang:** Combina la volatilidad nocturna con la volatilidad intra-día. Su fórmula es:
-    $$
-    \sigma^2 = \text{Vol}_{\text{overnight}}^2 + \text{Vol}_{\text{open-close}}^2 + \text{Vol}_{\text{close-close}}^2
-    $$
+    $\sigma^2 = \text{Vol}_{\text{overnight}}^2 + \text{Vol}_{\text{open-close}}^2 + \text{Vol}_{\text{close-close}}^2$
+
     donde:
-    - \(\text{Vol}_{\text{overnight}}\) es la volatilidad entre el precio de cierre y apertura del siguiente día.
-    - \(\text{Vol}_{\text{open-close}}\) es la volatilidad durante el día.
-    - \(\text{Vol}_{\text{close-close}}\) es la volatilidad de cierre a cierre.
+    - $\text{Vol}_{\text{overnight}}$ es la volatilidad entre el precio de cierre y apertura del siguiente día.
+    - $\text{Vol}_{\text{open-close}}$ es la volatilidad durante el día.
+    - $\text{Vol}_{\text{close-close}}$ es la volatilidad de cierre a cierre.
 
   - **GARCH:** Es un método estadístico que captura la volatilidad al clústerizar y promediar el rendimiento en series de tiempo financieras. La fórmula básica para GARCH(1,1) es:
-    $$
-    \sigma_t^2 = \alpha_0 + \alpha_1 \epsilon_{t-1}^2 + \beta_1 \sigma_{t-1}^2
-    $$
+    $\sigma_t^2 = \alpha_0 + \alpha_1 \epsilon_{t-1}^2 + \beta_1 \sigma_{t-1}^2$
+
     donde:
-    - \( \sigma_t^2 \) es la varianza condicional en el tiempo \( t \).
-    - \( \alpha_0 \), \( \alpha_1 \), y \( \beta_1 \) son parámetros del modelo.
-    - \( \epsilon_{t-1} \) es el residuo en el tiempo \( t-1 \).
+    - $\sigma_t^2$ es la varianza condicional en el tiempo $t$.
+    - $\alpha_0$, $\alpha_1$, y $\beta_1$ son parámetros del modelo.
+    - $\epsilon_{t-1}$ es el residuo en el tiempo $t-1$.
 
   - **Deep Learning:** Usa una LSTM para poder encontrar el comportamiento del mercado financiero.
 
