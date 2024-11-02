@@ -1,37 +1,71 @@
-# Framework para el análisis de la volatilidad en mercados financieros.
+# Framework para el análisis de la volatilidad en mercados financieros
 
-Este framework tiene como objetivo hallar comparaciones dentro de métricas del estado 
-del arte para poder observar como se desempeñan los algoritmos de aprendizaje
-profundo, así como una diversa serie de modelos
-que típicamente se usan en el análisis clásico de los mercados financieros.
+Este framework tiene como objetivo hallar comparaciones dentro de métricas del estado del arte para poder observar cómo se desempeñan los algoritmos de aprendizaje profundo, así como una diversa serie de modelos que típicamente se usan en el análisis clásico de los mercados financieros.
 
-## Características del algoritmo.
+## Características del algoritmo
 
-* Métodos para la estimación de la volatilidad
-  * Ventanas móviles: Es un proceso en el cual se estima la volatilidad del mercado financiero por ventanas de tiempo, finalmente se observa un proceso que se comporta segíun lo siguiente..
-  $$\sigma=\sqrt{\frac{\sum (x_i -\mu)^2}{n-1}}*252$$
-  * Parkinson: Es un método que asume que la distribución de los precios de las acciones siguen un comportamiento geométrico browniano.
-  * Yang-Zhang:Combina lo que es la volatilidad en la noche con la volatilidad intra-día
-  * GARCH: Es un método estadístico que captura la volatilidad clusteriszando y promediando el redimiento en series de tiempo financieras.
-  * Deep Learning: Usa una LSTM para poder encontrar el comportamiento del mercado financiero.
-## Cómo instalar el repositorio?
-1. ### **Clonar el repositorio.**
-> git clone https://github.com/yourusername/TimesSeriesAnalysis.git
+* **Métodos para la estimación de la volatilidad:**
+  - **Ventanas móviles:** Es un proceso en el cual se estima la volatilidad del mercado financiero por ventanas de tiempo. Finalmente, se observa un proceso que se comporta según lo siguiente:
+    $$
+    \sigma=\sqrt{\frac{\sum (x_i -\mu)^2}{n-1}} \times \sqrt{252}
+    $$
+  - **Parkinson:** Es un método que asume que la distribución de los precios de las acciones sigue un comportamiento geométrico browniano. La fórmula es:
+    $$
+    \sigma = \frac{1}{4 \ln(2)} \cdot \frac{1}{n} \sum_{i=1}^{n} \left( \ln\left(\frac{H_i}{L_i}\right) \right)^2 \times \sqrt{252}
+    $$
+    donde \( H_i \) y \( L_i \) son el precio máximo y mínimo en el periodo \( i \), respectivamente.
 
-> cd TimeSeriesAnalysis
-2. ### **Crear un entorno en python** 
-> python -m venv venv 
-> source venv/bin/activate 
-3. ### **Instalar las dependencias.**
-> pip install -r requirements.txt 
-4. ### **Uso básico del código.**
-> from sector_analyzer import SectorAnalyzer
-> analyzer=SectorAnalyzer()
-> all_sector_results=analyser.generate_reports()
+  - **Yang-Zhang:** Combina la volatilidad nocturna con la volatilidad intra-día. Su fórmula es:
+    $$
+    \sigma^2 = \text{Vol}_{\text{overnight}}^2 + \text{Vol}_{\text{open-close}}^2 + \text{Vol}_{\text{close-close}}^2
+    $$
+    donde:
+    - \(\text{Vol}_{\text{overnight}}\) es la volatilidad entre el precio de cierre y apertura del siguiente día.
+    - \(\text{Vol}_{\text{open-close}}\) es la volatilidad durante el día.
+    - \(\text{Vol}_{\text{close-close}}\) es la volatilidad de cierre a cierre.
+
+  - **GARCH:** Es un método estadístico que captura la volatilidad al clústerizar y promediar el rendimiento en series de tiempo financieras. La fórmula básica para GARCH(1,1) es:
+    $$
+    \sigma_t^2 = \alpha_0 + \alpha_1 \epsilon_{t-1}^2 + \beta_1 \sigma_{t-1}^2
+    $$
+    donde:
+    - \( \sigma_t^2 \) es la varianza condicional en el tiempo \( t \).
+    - \( \alpha_0 \), \( \alpha_1 \), y \( \beta_1 \) son parámetros del modelo.
+    - \( \epsilon_{t-1} \) es el residuo en el tiempo \( t-1 \).
+
+  - **Deep Learning:** Usa una LSTM para poder encontrar el comportamiento del mercado financiero.
+
+## ¿Cómo instalar el repositorio?
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/yourusername/TimesSeriesAnalysis.git
+   cd TimeSeriesAnalysis
+   ```
+
+2. **Crear un entorno en Python:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Instalar las dependencias:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Uso básico del código:**
+   ```python
+   from sector_analyzer import SectorAnalyzer
+   analyzer = SectorAnalyzer()
+   all_sector_results = analyzer.generate_reports()
+   ```
+
 ## Estructura del repositorio
-volatility-analysis/
 
-`├── src/
+```
+volatility-analysis/
+├── src/
 │   ├── models/
 │   │   ├── traditional.py
 │   │   ├── parkinson.py
@@ -48,8 +82,10 @@ volatility-analysis/
 │   └── settings.json
 ├── requirements.txt
 └── README.md
+```
 
-## Requierements
+## Requisitos
+
 * numpy>=1.21.0
 * pandas>=1.3.0
 * yfinance>=0.1.63
