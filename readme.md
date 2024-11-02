@@ -14,7 +14,7 @@ Este framework tiene como objetivo hallar comparaciones dentro de métricas del 
     donde $H_i$ y $L_i$ son el precio máximo y mínimo en el periodo $i$, respectivamente.
 
   - **Yang-Zhang:** Combina la volatilidad nocturna con la volatilidad intra-día. Su fórmula es:
-    $ \sigma^2 = \text{Vol}_{overnight}^2 + Vol_{open-close}^2 + Vol_{close-close}^2$
+    $ \sigma^2 = Vol_{overnight}^2 + Vol_{open-close}^2 + Vol_{close-close}^2$
 
     donde:
     - $\text{Vol}_{\text{overnight}}$ es la volatilidad entre el precio de cierre y apertura del siguiente día.
