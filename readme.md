@@ -31,7 +31,7 @@ que típicamente se usan en el análisis clásico de los mercados financieros.
 ## Estructura del repositorio
 volatility-analysis/
 
-├── src/
+`├── src/
 │   ├── models/
 │   │   ├── traditional.py
 │   │   ├── parkinson.py
